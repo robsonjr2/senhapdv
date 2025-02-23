@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Senha PDV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        /* Estilo do aviso de desenvolvimento */
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        .developer-name {
+            font-size: 16px;
+            color: #4CAF50;
+            font-weight: bold;
+            animation: glow 1.5s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50, 0 0 15px #4CAF50, 0 0 20px #4CAF50;
+            }
+            50% {
+                text-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50, 0 0 40px #4CAF50;
+            }
+            100% {
+                text-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50, 0 0 15px #4CAF50, 0 0 20px #4CAF50;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Calculadora de Senha PDV</h1>
+    <form id="senhaForm">
+        <input type="number" id="dia" placeholder="Dia" required>
+        <input type="number" id="mes" placeholder="Mês" required>
+        <input type="number" id="pdv" placeholder="Número do PDV" required>
+        <button type="submit">Gerar Senha</button>
+    </form>
+
+    <div class="result" id="result"></div>
+</div>
+
+<!-- Aviso de Desenvolvimento -->
+<div class="footer">
+    <p class="developer-name">Desenvolvido por SUPORTE T.I OPERACIONAL - LOJA 266 MIX SOBRAL</p>
+</div>
+
+<script>
+    document.getElementById('senhaForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Obtém os valores dos campos
+        let dia = document.getElementById('dia').value;
+        let mes = document.getElementById('mes').value;
+        let pdv = document.getElementById('pdv').value;
+
+        // Remove os zeros à esquerda
+        let diaSemZero = parseInt(dia, 10);
+        let mesSemZero = parseInt(mes, 10);
+
+        // Concatena o dia e o mês
+        let numeroBase = parseInt(diaSemZero.toString() + mesSemZero.toString());
+
+        // Calcula a senha
+        let senha = numeroBase + parseInt(pdv);
+
+        // Exibe a senha final
+        document.getElementById('result').textContent = `pdv@${senha}`;
+    });
+</script>
+
+</body>
+</html>
